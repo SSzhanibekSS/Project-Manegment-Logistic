@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Order</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .form-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .back-button {
+            margin-right: auto;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+        .form-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            flex: 1 1 150px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select {
+            flex: 2 1 300px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-group select {
+            background-color: #f4f4f4;
+        }
+
+        .form-actions {
+            text-align: right;
+        }
+
+        .form-actions button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .form-actions button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <a href="/main" class="back-button">Назад</a> <!-- Ссылка на предыдущую страницу -->
+    <h1>Поиск заказа</h1>
+</div>
+
+<div class="form-container">
+    <h1>Поиск заказа</h1>
+    <form th:action="@{/cargosearch/cargo}" th:object="${cargo}" method="post">
+        <div class="form-group">
+            <label for="poingA">Откуда:</label>
+            <input type="text" id="poingA" th:field="*{poingA}" placeholder="Например, Москва" required>
+        </div>
+        <div class="form-group">
+            <label for="pointB">Куда:</label>
+            <input type="text" id="pointB" th:field="*{pointB}" placeholder="Например, Санкт-Петербург" required>
+        </div>
+        <div class="form-group">
+            <label for="weightInTon">Вес (т):</label>
+            <input type="number" id="weightInTon" th:field="*{weightInTon}" placeholder="0-100">
+        </div>
+        <div class="form-group">
+            <label for="volume">Объём (м³):</label>
+            <input type="number" id="volume" th:field="*{volume}" placeholder="0-500">
+        </div>
+
+        <div class="form-group">
+            <label for="bodyType">Тип кузова:</label>
+            <select id="bodyType" th:field="*{bodyType}">
+                <option value="Тентованный">Тентованный</option>
+                <option value="Рефрижератор">Рефрижератор</option>
+                <option value="Изотерм">Изотерм</option>
+                <option value="Открытый">Открытый</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="paymentType">Оплата:</label>
+            <select id="paymentType" th:field="*{paymentType}">
+                <option value="С предоплатой">С предоплатой</option>
+                <option value="Оплата наличными">Оплата наличными</option>
+                <option value="Без ставки">Без ставки</option>
+                <option value="Оплата б/н с НДС">Оплата б/н с НДС</option>
+                <option value="Оплата б/н без НДС">Оплата б/н без НДС</option>
+            </select>
+        </div>
+        <div class="form-actions">
+            <button type="submit">Искать</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

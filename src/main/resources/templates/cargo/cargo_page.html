@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cargo Page</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Детали заказа</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center">Детали заказа</h1>
+    <div class="card mt-4">
+        <div class="card-body">
+            <h5 class="card-title">Заказ №<span th:text="${order.id}"></span></h5>
+            <p class="card-text"><strong>Маршрут:</strong> <span th:text="${order.poingA}"></span> → <span th:text="${order.pointB}"></span></p>
+            <p class="card-text"><strong>Дата:</strong> <span th:text="${order.date}"></span></p>
+            <p class="card-text"><strong>Тип кузова:</strong> <span th:text="${order.bodyType}"></span></p>
+            <p class="card-text"><strong>Оплата:</strong> <span th:text="${order.paymentType}"></span></p>
+            <p class="card-text"><strong>Вес:</strong> <span th:text="${order.weightInTon}"></span> тонн</p>
+            <p class="card-text"><strong>Объем:</strong> <span th:text="${order.volume}"></span> м³</p>
+            <div class="text-center mt-4">
+                <a th:href="@{/cargosearch/do_order/{id}(id=${order.id})} "class="btn btn-success btn-lg">Забронировать Грузовик</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+</body>
+</html>

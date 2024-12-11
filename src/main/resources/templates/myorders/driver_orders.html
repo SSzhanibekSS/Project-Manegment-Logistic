@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Orders</title>
+</head>
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+    .back-button {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 8px 16px;
+        background-color: #007BFF;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+    .back-button:hover {
+        background-color: #0056b3;
+    }
+</style>
+<body>
+
+<div class="header">
+    <a href="/myorders/driver" class="back-button">Назад</a> <!-- Ссылка на предыдущую страницу -->
+    <h1>Поиск заказа</h1>
+</div>
+
+
+<table>
+    <thead>
+    <tr>
+
+        <th>Open</th>
+        <th>Weight (Ton)</th>
+        <th>Volume</th>
+        <th>Point A</th>
+        <th>Point B</th>
+        <th>Cargo Type</th>
+        <th>Date</th>
+        <th>Body Type</th>
+        <th>Payment Type</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order : ${orders}">
+        <td>
+            <a th:href="@{/myorders/driver/{id}(id=${order.id})}" class="back-button">Open Info</a>
+        </td>
+        <td  th:text="${order.weightInTon}"></td>
+        <td th:text="${order.volume}"></td>
+        <td th:text="${order.poingA}"></td>
+        <td th:text="${order.pointB}"></td>
+        <td th:text="${order.cargoType}"></td>
+        <td th:text="${order.date}"></td>
+        <td th:text="${order.bodyType}"></td>
+        <td th:text="${order.paymentType}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
